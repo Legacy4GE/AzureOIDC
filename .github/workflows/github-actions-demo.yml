@@ -12,7 +12,7 @@ jobs:
         uses: azure/login@v1
         with:
           client-id: 2717ed0e-ccde-4038-b033-d1c2204f0745
-          tenant-id: 6c12b0b0-b2cc-4a73-8252-0b94bfca2145
+          tenant-id: 12e0baa0-471a-4a8b-afcf-dd2be7c58916
           allow-no-subscriptions: true
   
       - name: 'Run az commands'
